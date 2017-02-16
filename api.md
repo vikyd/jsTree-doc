@@ -36,7 +36,7 @@ jstree 的版本号
 从 DOM 中删除 jstree 的所有痕迹，并销毁所有的实例。
 
 
-## $.jstree.core (id)private
+## $.jstree.core (id) `private`
 jstree 类的构造函数，仅用于内部。
 
 | 参数 |   描述   |
@@ -67,54 +67,56 @@ $.jstree.reference(document.getElementByID('branch'));
 ```
 
 
-$().jstree([arg])
+## $().jstree([arg])
 
-$(':jstree')
+## $(':jstree')
 
-$.jstree.defaults.core
+## $.jstree.defaults.core
 
-$.jstree.defaults.core.data
+## $.jstree.defaults.core.data
 
-$.jstree.defaults.core.strings
+## $.jstree.defaults.core.strings
 
-$.jstree.defaults.core.check_callback
+## $.jstree.defaults.core.check_callback
 
-$.jstree.defaults.core.error
+## $.jstree.defaults.core.error
 
-$.jstree.defaults.core.animation
+## $.jstree.defaults.core.animation
 
-$.jstree.defaults.core.multiple
+## $.jstree.defaults.core.multiple
 
-$.jstree.defaults.core.themes
+## $.jstree.defaults.core.themes
 
-$.jstree.defaults.core.themes.name
+## $.jstree.defaults.core.themes.name
 
-$.jstree.defaults.core.themes.url
+## $.jstree.defaults.core.themes.url
 
-$.jstree.defaults.core.themes.dir
+## $.jstree.defaults.core.themes.dir
 
-$.jstree.defaults.core.themes.dots
+## $.jstree.defaults.core.themes.dots
 
-$.jstree.defaults.core.themes.icons
+## $.jstree.defaults.core.themes.icons
 
-$.jstree.defaults.core.themes.ellipsis
+## $.jstree.defaults.core.themes.ellipsis
 
-$.jstree.defaults.core.themes.stripes
+## $.jstree.defaults.core.themes.stripes
 
-$.jstree.defaults.core.themes.variant
+## $.jstree.defaults.core.themes.variant
 
-$.jstree.defaults.core.themes.responsive
+## $.jstree.defaults.core.themes.responsive
 
-$.jstree.defaults.core.expand_selected_onload
+## $.jstree.defaults.core.expand_selected_onload
 
-$.jstree.defaults.core.worker
+## $.jstree.defaults.core.worker
 
-$.jstree.defaults.core.force_text
+## $.jstree.defaults.core.force_text
 
-$.jstree.defaults.core.dblclick_toggle
+## $.jstree.defaults.core.dblclick_toggle
 
-plugin (deco [, opts])private
+plugin (deco [, opts]) `private`
+
 init (el, optons)private
+
 init.jstree Event
 
 loading.jstree Event
@@ -523,7 +525,7 @@ Enforces that no nodes with the same name can coexist as siblings.
 $.jstree.defaults.unique unique plugin
 $.jstree.defaults.unique.case_sensitive unique plugin
 $.jstree.defaults.unique.duplicate unique plugin
-Wholerow plugin
+# Wholerow plugin
 
 Makes each node appear block level. Making selection easier. May cause slow down for large trees in old browsers.
-click here for the old site (v.1)
+
