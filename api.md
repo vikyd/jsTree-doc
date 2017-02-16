@@ -18,11 +18,11 @@ jstree 的版本号
 配置实例中使用的插件。是一个字符串数组，每个字符串是一个插件名。
 
 
-$.jstree.plugins
+## $.jstree.plugins
 存放所有已加载的插件（内部用）
 
 
-$.jstree.create (el [, options])
+## $.jstree.create (el [, options])
 创建一个 jstree 实例
 
 | 参数/返回 |   描述   |
@@ -32,11 +32,11 @@ $.jstree.create (el [, options])
 | `返回`      | `jsTree` 新的实例    |
 
 
-$.jstree.destroy ()
+## $.jstree.destroy ()
 从 DOM 中删除 jstree 的所有痕迹，并销毁所有的实例。
 
 
-$.jstree.core (id)private
+## $.jstree.core (id)private
 jstree 类的构造函数，仅用于内部。
 
 | 参数 |   描述   |
