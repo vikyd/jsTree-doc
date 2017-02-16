@@ -1,0 +1,24 @@
+{
+  "plugins": [
+    "anchor-navigation-ex",
+    "theme-api"
+  ],
+  "pluginsConfig": {
+    "anchor-navigation-ex": {
+      "isRewritePageTitle": true
+    },
+    "theme-api": {
+      "languages": [
+        {
+          "lang": "js",
+          "name": "JavaScript",
+          "default": true
+        },
+        {
+          "lang": "go",
+          "name": "Go"
+        }
+      ]
+    }
+  }
+}
