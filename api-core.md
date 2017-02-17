@@ -32,7 +32,7 @@ jstree 的版本号
 
 | 参数/返回 |   描述   |
 | --------   | -----  |
-| `el`       | `DOMElement` `jQuery` `String`，要创建实例的元素，可以是 jQuery 对象或一个选择器 |
+| `el`       | `DOMElement` `jQuery` `String`，要创建实例的元素，可以是jQuery对象或一个选择器 |
 | `options`  | `Object` 此实例的配置（扩展自`$.jstree.defaults`）  |
 | `返回`      | `jsTree` 新的实例    |
 
@@ -57,7 +57,7 @@ $.jstree.reference (needle)
 | 参数/返回 |   描述   |
 | --------   | -----  |
 | `needle`   | `DOMElement` `jQuery` `String` |
-| `返回`      | `jsTree` `null` 实例，如果找不到实例则返回 `null` |
+| `返回`      | `jsTree` `null` 实例，若找不到实例则返回 `null` |
 
 **Examples**
 ```js
@@ -78,13 +78,13 @@ $.jstree.reference(document.getElementByID('branch'));
 ## $().jstree([arg])
 创建实例、获取实例、在实例中调用命令。
 
-- 如果当前节点（node）没有关联的实例，则会新建一个实例。新建实例时，将`arg`用于扩展`$.jstree.defaults`。
+- 若当前节点（node）没有关联的实例，则会新建一个实例。新建实例时，将`arg`用于扩展`$.jstree.defaults`。
 此时将没有返回值（不会中断链式操作）。
 
-- 如果已存在实例，且`arg`是一个字符串，则此实例将执行`arg`中填的命令及命令参数。
-如果此命令有返回值，则返回此值（此命令函数可能会影响链式操作）。
+- 若已存在实例，且`arg`是一个字符串，则此实例将执行`arg`中填的命令及命令参数。
+若此命令有返回值，则返回此值（此命令函数可能会影响链式操作）。
 
-- 如果已存在实例，且`arg`不是一个字符串，则返回此实例（类似`$.jstree.reference`）。
+- 若已存在实例，且`arg`不是一个字符串，则返回此实例（类似`$.jstree.reference`）。
 
 - 其他情况，则无返回值，且不会中断链式操作。
 
@@ -129,7 +129,7 @@ $('div:jstree').each(function () {
 ## $.jstree.defaults.core.data
 数据配置。
 
-如果值为`false`，则 jstree 容器元素内的 HTML 将用于构建树（这些元素应是一些包含子项的无序列表）。
+若值为`false`，则 jstree 容器元素内的 HTML 将用于构建树（这些元素应是一些包含子项的无序列表）。
 
 你也可以在这里传入一个 HTML 字符串 或 JSON 数字。
 
@@ -252,7 +252,7 @@ $('#tree').jstree({
 
 
 ## $.jstree.defaults.core.themes.name
-主题的名字（如果为`false`，则使用默认主题）
+主题的名字（若为`false`，则使用默认主题）
 
 
 
@@ -354,7 +354,7 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 | -------- | ------ |
 | `el`     | `DOMElement` `jQuery` `String` 将要成为树元素 |
 | `options` | `Object` 实例的配置 |
-| `触发器`   | `init.jstree` `loading.jstree` `loaded.jstree` `ready.jstree` `changed.jstree` |
+| `触发器（Triggers）` | `init.jstree` `loading.jstree` `loaded.jstree` `ready.jstree` `changed.jstree` |
 
 
 
@@ -502,14 +502,14 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 ## get_path (obj [, glue, ids])
 获取节点的路径。可能是
 - 一堆节点名称
-- 一堆节点 ID
+- 一堆节点ID
 - 一堆节点名和 ID（或数组）
 
 | 参数/返回 |   描述   |
 | -------- | ------ |
 | `obj`    | `mixed` 节点 |
-| `glue`   | `String` 若是字符串，则填间隔字符串（如`/`），如果是一个假值（[译注](https://developer.mozilla.org/en-US/docs/Glossary/Falsy)），则返回数组 |
-| `ids`    | `Boolean` 若为`true`则用节点 ID 构建路径，否则用节点名称 |
+| `glue`   | `String` 若是字符串，则填间隔字符串（如`/`），若是一个假值（[译注](https://developer.mozilla.org/en-US/docs/Glossary/Falsy)），则返回数组 |
+| `ids`    | `Boolean` 若为`true`则用节点ID 构建路径，否则用节点名称 |
 | `返回`   | `mixed` |
 
 
@@ -682,62 +682,190 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 ## _load_node (obj [, callback]) - -  `private`
+真正处理一个节点的加载过程，仅内部使用。
+
+| 参数/返回 | 描述 |
+| ----- | ------ |
+| `obj` | `mixed` |
+| `callback` | `function` 加载完毕后执行此回调函数，此函数允许在实例范围内，并将接收 1 个状态参数（boolean） |
+| `返回` | `Boolean` |
+
 
 
 
 ## _node_changed (obj [, callback]) - -  `private`
+添加一个节点到将要重绘的节点列表中，仅内部使用。
+
+| 参数 |   描述   |
+| ----- | ------ |
+| `obj` | `mixed` |
+
 
 
 
 ## _append_html_data (obj, data) - -  `private`
+添加 HTML 内容到树，仅内部使用。
+
+| 参数/触发器 | 描述 |
+| ----- | ------ |
+| `obj` | `mixed` 要添加到的节点 |
+| `data` | `String` HTML 字符串 |
+| `触发器` | `model.jstree` `changed.jstree` |
+
+
 
 
 
 ## model.jstree （ Event ⚡ ）
+当新数据插入到树模型（tree model）中时触发。
+
+| 参数   | 描述 |
+| :----- | :------ |
+| `nodes` | `Array` 节点ID 数组 |
+| `parent` | `String` 这些节点的父节点ID |
+
+
 
 
 
 ## _append_json_data (obj, data) - -  `private`
+添加 JSON 内容到树，仅内部使用。
+
+| 参数/触发器 | 描述 |
+| ----- | ------ |
+| `obj` | `mixed` 要添加到的节点 |
+| `data` | `String` JSON 对象字符串 |
+| `force_processing` | `Boolean` 内部参数（无需设置） |
+| `触发器` | `model.jstree` `changed.jstree` |
+
+
 
 
 
 ## _parse_model_from_html (d [, p, ps]) - -  `private`
+从jQuery对象中解释节点，并添加到树的内存模型中，仅内部使用。
+
+| 参数/返回 | 描述 |
+| ----- | ------ |
+| `d` | `jQuery`jQuery对象 |
+| `p` | `String` 父节点ID |
+| `ps` | `Array` 所有的父节点列表 |
+| `返回` | `String` 将被添加到模型中的节点ID |
+
+
 
 
 
 ## _parse_model_from_flat_json (d [, p, ps]) - -  `private`
+从 JSON 对象中解释节点（用于处理扁平数据，即无嵌套的子节点，但这些子节点拥有 ID 和 父节点ID），
+并添加到树的内存模型中，仅内部使用。
+
+| 参数/返回 | 描述 |
+| ----- | ------ |
+| `d` | `Object` JSON 对象 |
+| `p` | `String` 父节点ID |
+| `ps` | `Array` 所有的父节点列表 |
+| `返回` | `String` 将被添加到模型中的节点ID |
+
+
 
 
 
 ## _parse_model_from_json (d [, p, ps]) - -  `private`
+从 JSON 对象中解释节点，并添加到树的内存模型中，仅内部使用。
+
+| 参数/返回 | 描述 |
+| ----- | ------ |
+| `d` | `Object` JSON 对象 |
+| `p` | `String` 父节点ID |
+| `ps` | `Array` 所有的父节点列表 |
+| `返回` | `String` 将被添加到模型中的节点ID |
+
+
 
 
 
 ## _redraw () - -  `private`
+重绘所有需要重绘的节点，仅内部使用。
+
+| 触发器 | 描述 |
+| ----- | ------ |
+| `触发器` | `redraw.jstree` |
+
+
 
 
 
 ## redraw.jstree （ Event ⚡ ）
+当节点们重绘完毕后触发。
+
+| 参数 | 描述 |
+| ----- | ------ |
+| `nodes` | `array` 已重绘的节点 |
+
+
 
 
 
 ## redraw ([full])
+重绘所有需要重绘的节点，或者 重绘整个树的所有节点。
+
+| 参数 | 描述 |
+| ----- | ------ |
+| `full` | `Boolean` 若`true`则重绘整个树的所有节点 |
+
+
 
 
 
 ## draw_children (node) - -  `private`
+重绘单个节点的子节点，仅内部使用。
+
+| 参数 | 描述 |
+| ----- | ------ |
+| `node` | `mixed` 节点（将重绘其子节点） |
+
+
 
 
 
 ## redraw_node (node, deep, is_callback, force_render) - -  `private`
+重绘单个节点，仅内部使用。
+
+| 参数 | 描述 |
+| ----- | ------ |
+| `node` | `mixed` 将要重绘的节点 |
+| `deep` | `Boolean` 是否也重绘子节点 |
+| `is_callback` | `Boolean` 是否递归调用 |
+| `force_render` | `Boolean` 是否也重绘父节点未展开的子节点 |
+
+
 
 
 
 ## open_node (obj [, callback, animation])
+展开一个节点，看到其子节点（原文：revaling its children）。
+若此节点还未被加载，将先加载此节点，再展开。
+
+| 参数/触发器 | 描述 |
+| ----- | ------ |
+| `obj` | `mixed` 将要展开的节点 |
+| `callback` | `Function` 节点展开完毕后的回调 |
+| `animation` | `Number` 展开节点时的动画过渡时间（毫秒）（覆盖`core.animation`的设置），若为`false`则禁用动画效果 |
+| `触发器` | `open_node.jstree` `after_open.jstree` `before_open.jstree` |
+
+
 
 
 
 ## before_open.jstree （ Event ⚡ ）
+当一个节点即将被展开时触发（if the node is supposed to be in the DOM, it will be, but it won't be visible yet）。
+
+| 参数 | 描述 |
+| :----- | :------ |
+| `node` | `Object` 将展开的节点 |
+
+
 
 
 
@@ -745,7 +873,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## after_open.jstree （ Event ⚡ ）
+
+
+
 
 
 
@@ -753,7 +887,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## close_node (obj [, animation])
+
+
+
 
 
 
@@ -761,7 +901,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## after_close.jstree （ Event ⚡ ）
+
+
+
 
 
 
@@ -769,7 +915,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## open_all ([obj, animation, original_obj])
+
+
+
 
 
 
@@ -777,7 +929,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## close_all ([obj, animation])
+
+
+
 
 
 
@@ -785,7 +943,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## is_disabled (obj)
+
+
+
 
 
 
@@ -793,7 +957,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## enable_node.jstree （ Event ⚡ ）
+
+
+
 
 
 
@@ -801,7 +971,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## disable_node.jstree （ Event ⚡ ）
+
+
+
 
 
 
@@ -809,7 +985,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## hide_node (obj)
+
+
+
 
 
 
@@ -817,7 +999,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## show_node (obj)
+
+
+
 
 
 
@@ -825,7 +1013,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## hide_all ()
+
+
+
 
 
 
@@ -833,7 +1027,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## show_all ()
+
+
+
 
 
 
@@ -841,7 +1041,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## activate_node (obj, e) - -  `private`
+
+
+
 
 
 
@@ -849,7 +1055,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## hover_node (obj) - -  `private`
+
+
+
 
 
 
@@ -857,7 +1069,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## dehover_node (obj) - -  `private`
+
+
+
 
 
 
@@ -865,7 +1083,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## select_node (obj [, supress_event, prevent_open])
+
+
+
 
 
 
@@ -873,7 +1097,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## changed.jstree （ Event ⚡ ）
+
+
+
 
 
 
@@ -881,7 +1111,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## deselect_node.jstree （ Event ⚡ ）
+
+
+
 
 
 
@@ -889,7 +1125,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## select_all.jstree （ Event ⚡ ）
+
+
+
 
 
 
@@ -897,7 +1139,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## deselect_all.jstree （ Event ⚡ ）
+
+
+
 
 
 
@@ -905,7 +1153,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## get_selected ([full])
+
+
+
 
 
 
@@ -913,7 +1167,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## get_bottom_selected ([full])
+
+
+
 
 
 
@@ -921,7 +1181,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## set_state (state [, callback]) - -  `private`
+
+
+
 
 
 
@@ -929,7 +1195,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## refresh ()
+
+
+
 
 
 
@@ -937,7 +1209,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## refresh_node (obj)
+
+
+
 
 
 
@@ -945,7 +1223,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## set_id (obj, id)
+
+
+
 
 
 
@@ -953,7 +1237,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## get_text (obj)
+
+
+
 
 
 
@@ -961,7 +1251,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## set_text.jstree （ Event ⚡ ）
+
+
+
 
 
 
@@ -969,7 +1265,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## create_node ([par, node, pos, callback, is_loaded])
+
+
+
 
 
 
@@ -977,7 +1279,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## rename_node (obj, val)
+
+
+
 
 
 
@@ -985,7 +1293,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## delete_node (obj)
+
+
+
 
 
 
@@ -993,7 +1307,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## check (chk, obj, par, pos) - -  `private`
+
+
+
 
 
 
@@ -1001,7 +1321,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## move_node (obj, par [, pos, callback, is_loaded])
+
+
+
 
 
 
@@ -1009,7 +1335,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## copy_node (obj, par [, pos, callback, is_loaded])
+
+
+
 
 
 
@@ -1017,7 +1349,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## cut (obj)
+
+
+
 
 
 
@@ -1025,7 +1363,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## copy (obj)
+
+
+
 
 
 
@@ -1033,7 +1377,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## get_buffer ()
+
+
+
 
 
 
@@ -1041,7 +1391,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## paste (obj [, pos])
+
+
+
 
 
 
@@ -1049,7 +1405,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## clear_buffer ()
+
+
+
 
 
 
@@ -1057,7 +1419,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## edit (obj [, default_text, callback])
+
+
+
 
 
 
@@ -1065,11 +1433,20 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## set_theme.jstree （ Event ⚡ ）
 
 
 
+
+
+
 ## get_theme ()
+
+
+
 
 
 
@@ -1077,7 +1454,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## get_theme ()
+
+
+
 
 
 
@@ -1085,7 +1468,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## show_stripes.jstree （ Event ⚡ ）
+
+
+
 
 
 
@@ -1093,7 +1482,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## hide_stripes.jstree （ Event ⚡ ）
+
+
+
 
 
 
@@ -1101,7 +1496,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## show_dots ()
+
+
+
 
 
 
@@ -1109,7 +1510,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## hide_dots ()
+
+
+
 
 
 
@@ -1117,11 +1524,20 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## toggle_dots ()
 
 
 
+
+
+
 ## show_icons ()
+
+
+
 
 
 
@@ -1129,7 +1545,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## hide_icons ()
+
+
+
 
 
 
@@ -1137,7 +1559,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## toggle_icons ()
+
+
+
 
 
 
@@ -1145,7 +1573,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## show_ellipsis.jstree （ Event ⚡ ）
+
+
+
 
 
 
@@ -1153,7 +1587,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## hide_ellipsis.jstree （ Event ⚡ ）
+
+
+
 
 
 
@@ -1161,7 +1601,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## set_icon (obj, icon)
+
+
+
 
 
 
@@ -1169,7 +1615,13 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 
+
+
+
 ## hide_icon (obj)
+
+
+
 
 
 
