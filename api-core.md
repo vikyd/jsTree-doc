@@ -230,7 +230,7 @@ $('#tree').jstree({
 
 
 ## $.jstree.defaults.core.animation
-展开、折叠时的动画过渡时间。
+打开、折叠时的动画过渡时间。
 
 - 默认：200
 - `false`：禁用动画过渡
@@ -310,7 +310,7 @@ boolean（默认`false`），是否使用主题的响应式状态（遇到小屏
 
 
 ## $.jstree.defaults.core.expand_selected_onload
-boolean，决定是否在加载树时展开所有选中的节点。
+boolean，决定是否在加载树时打开所有选中的节点。
 
 
 
@@ -593,7 +593,7 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 ## is_open (obj)
-判断一个节点是否已展开。
+判断一个节点是否已打开。
 
 | 参数/返回 |   描述   |
 | -------- | ------ |
@@ -628,12 +628,12 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 ## load_node (obj [, callback])
 加载一个节点（即使用 `core.data` 的设置来拉取子节点），支持传入多个节点（数组形式）。
 
-| 参数/返回/触发器 |   描述   |
+| 参数/返回/触发 |   描述   |
 | --------------- | ------ |
 | `obj`           | `mixed` |
 | `callback`      | `function` 加载完毕的回调，将在实例的范围中执行，并接收两个参数：节点、boolean 状态 |
 | `返回`          | `Boolean` |
-| `触发器`        | `load_node.jstree` |
+| `触发事件`        | `load_node.jstree` |
 
 
 
@@ -667,7 +667,7 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 | ----- | ------ |
 | `node`   | `mixed` 加载节点下的所有节点，而非整棵树的所有节点 |
 | `status` | `function` 加载成功的回调 |
-| `触发器`  | `load_all.jstree` |
+| `触发事件`  | `load_all.jstree` |
 
 
 
@@ -706,11 +706,11 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 ## _append_html_data (obj, data) - -  `private`
 添加 HTML 内容到树，仅内部使用。
 
-| 参数/触发器 | 描述 |
+| 参数/触发 | 描述 |
 | ----- | ------ |
 | `obj` | `mixed` 要添加到的节点 |
 | `data` | `String` HTML 字符串 |
-| `触发器` | `model.jstree` `changed.jstree` |
+| `触发事件` | `model.jstree` `changed.jstree` |
 
 
 
@@ -731,12 +731,12 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 ## _append_json_data (obj, data) - -  `private`
 添加 JSON 内容到树，仅内部使用。
 
-| 参数/触发器 | 描述 |
+| 参数/触发 | 描述 |
 | ----- | ------ |
 | `obj` | `mixed` 要添加到的节点 |
 | `data` | `String` JSON 对象字符串 |
 | `force_processing` | `Boolean` 内部参数（无需设置） |
-| `触发器` | `model.jstree` `changed.jstree` |
+| `触发事件` | `model.jstree` `changed.jstree` |
 
 
 
@@ -788,9 +788,9 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 ## _redraw () - -  `private`
 重绘所有需要重绘的节点，仅内部使用。
 
-| 触发器 | 描述 |
+| 触发 | 描述 |
 | ----- | ------ |
-| `触发器` | `redraw.jstree` |
+| `触发事件` | `redraw.jstree` |
 
 
 
@@ -837,123 +837,185 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 | `node` | `mixed` 将要重绘的节点 |
 | `deep` | `Boolean` 是否也重绘子节点 |
 | `is_callback` | `Boolean` 是否递归调用 |
-| `force_render` | `Boolean` 是否也重绘父节点未展开的子节点 |
+| `force_render` | `Boolean` 是否也重绘父节点未打开的子节点 |
 
 
 
 
 
 ## open_node (obj [, callback, animation])
-展开一个节点，看到其子节点（原文：revaling its children）。
-若此节点还未被加载，将先加载此节点，再展开。
+打开一个节点，看到其子节点（原文：revaling its children）。
+若此节点还未被加载，将先加载此节点，再打开。
 
-| 参数/触发器 | 描述 |
+| 参数/触发 | 描述 |
 | ----- | ------ |
-| `obj` | `mixed` 将要展开的节点 |
-| `callback` | `Function` 节点展开完毕后的回调 |
-| `animation` | `Number` 展开节点时的动画过渡时间（毫秒）（覆盖`core.animation`的设置），若为`false`则禁用动画效果 |
-| `触发器` | `open_node.jstree` `after_open.jstree` `before_open.jstree` |
+| `obj` | `mixed` 将要打开的节点 |
+| `callback` | `Function` 节点打开完毕后的回调 |
+| `animation` | `Number` 打开节点时的动画过渡时间（毫秒）（覆盖`core.animation`的设置），若为`false`则禁用动画效果 |
+| `触发事件` | `open_node.jstree` `after_open.jstree` `before_open.jstree` |
 
 
 
 
 
 ## before_open.jstree （ Event ⚡ ）
-当一个节点即将被展开时触发（if the node is supposed to be in the DOM, it will be, but it won't be visible yet）。
+当一个节点即将被打开时触发（if the node is supposed to be in the DOM, it will be, but it won't be visible yet）。
 
 | 参数 | 描述 |
 | :----- | :------ |
-| `node` | `Object` 将展开的节点 |
+| `node` | `Object` 将打开的节点 |
 
 
 
 
 
 ## open_node.jstree （ Event ⚡ ）
+当一个节点打开完毕时触发（若有过渡动画，此时动画应该还没完毕）。
 
-
+| 参数 | 描述 |
+| :----- | :------ |
+| `node` | `Object` 打开完毕的节点 |
 
 
 
 
 ## after_open.jstree （ Event ⚡ ）
+当一个节点打开完毕，且过渡动画也已完毕时触发。
 
+| 参数 | 描述 |
+| :----- | :------ |
+| `node` | `Object` 打开完毕的节点 |
 
 
 
 
 
 ## _open_to (obj) - -  `private`
+打开节点的所有父节点（此时节点应已加载）
 
+| 参数 | 描述 |
+| :----- | :------ |
+| `obj` | `mixed` 需显示的节点 |
 
 
 
 
 
 ## close_node (obj [, animation])
+关闭一个节点，并隐藏其子节点
 
+| 参数 | 描述 |
+| :----- | :------ |
+| `obj` | `mixed` 需关闭的节点 |
+| `animation` | `Number` 关闭节点时的动画过渡时间（毫秒）（覆盖`core.animation`的设置），若为`false`则禁用动画效果 |
+| `触发事件` | `close_node.jstree` `after_close.jstree` |
 
 
 
 
 
 ## close_node.jstree （ Event ⚡ ）
+当一个节点关闭完毕时触发（若有过渡动画，此时动画应该还没完毕）。
 
+| 参数 | 描述 |
+| :----- | :------ |
+| `node` | `Object` 关闭完毕的节点 |
 
 
 
 
 
 ## after_close.jstree （ Event ⚡ ）
+当一个节点关闭完毕，且过渡动画也已完毕时触发。
 
+| 参数 | 描述 |
+| :----- | :------ |
+| `obj` | `mixed` 关闭完毕的节点 |
 
 
 
 
 
 ## toggle_node (obj)
+切换节点的状态，若已打开则关闭节点，若已关闭则打开节点。
 
+| 参数 | 描述 |
+| :----- | :------ |
+| `obj` | `mixed` 需切换状态的节点 |
 
 
 
 
 
 ## open_all ([obj, animation, original_obj])
+打开一个节点或整棵树的内所有节点，显示其子节点。
+若节点还没加载，则先加载节点，完毕再打开节点。
 
+| 参数/触发 | 描述 |
+| :----- | :------ |
+| `obj` | `mixed` 需递归打开的节点，若忽略则打开整棵树的所有节点 |
+| `animation` | `Number` 打开节点时动画的过渡时间（毫秒），默认禁用动画效果 |
+| `reference` | `jQuery` 开始处理的节点（内部使用） |
+| `触发事件` | `open_all.jstree` |
 
 
 
 
 
 ## open_all.jstree （ Event ⚡ ）
+当`open_all`完毕时触发。
 
+| 参数 | 描述 |
+| :----- | :------ |
+| `node` | `Object` 已打开的节点 |
 
 
 
 
 
 ## close_all ([obj, animation])
+关闭一个节点或整棵树的所有节点（后面这句没懂：revaling their children）。
 
+| 参数/触发 | 描述 |
+| :----- | :------ |
+| `obj` | `mixed` 需递归关闭的节点，若忽略则关闭整棵树的所有节点 |
+| `animation` | `Number` 打开节点时动画的过渡时间（毫秒），默认禁用动画效果 |
+| `触发事件` | `close_all.jstree` |
 
 
 
 
 
 ## close_all.jstree （ Event ⚡ ）
+当`close_all`完毕时触发。
 
+| 参数 | 描述 |
+| :----- | :------ |
+| `node` | `Object` 关闭完毕的节点 |
 
 
 
 
 
 ## is_disabled (obj)
+检查一个节点是否被禁用了（即不可被选中）。
 
+| 参数/返回 | 描述 |
+| :----- | :------ |
+| `obj` | `mixed`  |
+| `返回` | `Boolean` |
 
 
 
 
 
 ## enable_node (obj)
+启用一个节点（这样节点才可被选中）。
+
+| 参数/触发 | 描述 |
+| :----- | :------ |
+| `obj` | `mixed` 需启用的节点 |
+| `触发事件` | `enable_node.jstree` |
 
 
 
@@ -961,132 +1023,222 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 ## enable_node.jstree （ Event ⚡ ）
+当一个节点被启用时触发。
 
+| 参数 | 描述 |
+| :----- | :------ |
+| `node` | `Object` 需启用的节点 |
 
 
 
 
 
 ## disable_node (obj)
+禁用一个节点（这样节点不可被选中）。
 
+| 参数/触发 | 描述 |
+| :----- | :------ |
+| `obj` | `mixed` 需禁用的节点 |
+| `触发事件` | `disable_node.jstree` |
 
 
 
 
 
 ## disable_node.jstree （ Event ⚡ ）
+当一个节点被禁用时触发。
 
+| 参数 | 描述 |
+| :----- | :------ |
+| `node` | `Object` 需禁用的节点 |
 
 
 
 
 
 ## is_hidden (obj)
+检查一个节点是否被隐藏了。
 
+| 参数/返回 | 描述 |
+| :----- | :------ |
+| `obj` | `mixed` 节点 |
+| `返回` | `Boolean` |
 
 
 
 
 
 ## hide_node (obj)
+隐藏一个节点（仍在树结构中，只是看不见了）。
 
+| 参数/触发 | 描述 |
+| :----- | :------ |
+| `obj` | `mixed` 需隐藏的节点 |
+| `skip_redraw` | `Boolean` 是否需要重绘，内部参数 |
+| `触发事件` | `hide_node.jstree` |
 
 
 
 
 
 ## hide_node.jstree （ Event ⚡ ）
+当一个节点被隐藏时触发。
 
+| 参数 | 描述 |
+| :----- | :------ |
+| `node` | `Object` 被隐藏的节点 |
 
 
 
 
 
 ## show_node (obj)
+显示一个节点。
 
+| 参数/触发 | 描述 |
+| :----- | :------ |
+| `obj` | `mixed` 需显示的节点 |
+| `skip_redraw` | `Boolean` 是否需要重绘，内部参数 |
+| `触发事件` | `show_node.jstree` |
 
 
 
 
 
 ## show_node.jstree （ Event ⚡ ）
+当一个节点被显示时触发。
 
+| 参数 | 描述 |
+| :----- | :------ |
+| `node` | `Object` 显示的节点 |
 
 
 
 
 
 ## hide_all ()
+隐藏所有节点。
 
+| 触发 | 描述 |
+| :----- | :------ |
+| `触发事件` | `hide_node.jstree` |
 
 
 
 
 
 ## hide_all.jstree （ Event ⚡ ）
+当所有节点被隐藏时触发。
 
+| 参数 | 描述 |
+| :----- | :------ |
+| `nodes` | `Array` 所有被隐藏节点的 ID 集合 |
 
 
 
 
 
 ## show_all ()
+显示所有节点。
 
+| 触发 | 描述 |
+| :----- | :------ |
+| `触发事件` | `show_all.jstree` |
 
 
 
 
 
 ## show_all.jstree （ Event ⚡ ）
+当所有节点被显示时触发。
 
+| 参数 | 描述 |
+| :----- | :------ |
+| `nodes` | `Array` 所有被显示节点的 ID 集合 |
 
 
 
 
 
 ## activate_node (obj, e) - -  `private`
+当用户选中一个节点时被调用，仅内部使用。
 
+| 参数/触发 | 描述 |
+| :----- | :------ |
+| `obj` | `mixed` 节点 |
+| `e` | `Object` 相关的事件 |
+| `触发事件` | `activate_node.jstree` `changed.jstree` |
 
 
 
 
 
 ## activate_node.jstree （ Event ⚡ ）
+当一个节点被用户点击或交互时触发。
 
+| 参数 | 描述 |
+| :----- | :------ |
+| `nodes` | `Object` |
+| `event` | `Object` 触发调用的原始事件（也可能是一个空对象） |
 
 
 
 
 
 ## hover_node (obj) - -  `private`
+当用户鼠标移过节点时，使节点的状态变为`鼠标经过`状态，仅内部使用。
 
+| 参数/触发 | 描述 |
+| :----- | :------ |
+| `obj` | `mixed` |
+| `触发事件` | `hover_node.jstree` |
 
 
 
 
 
 ## hover_node.jstree （ Event ⚡ ）
+当用户鼠标经过节点时触发。
 
+| 参数 | 描述 |
+| :----- | :------ |
+| `nodes` | `Object` |
 
 
 
 
 
 ## dehover_node (obj) - -  `private`
+当用户鼠标离开节点时，使移除节点的`鼠标经过`状态，仅内部使用。
 
-
+| 参数/触发 | 描述 |
+| :----- | :------ |
+| `obj` | `mixed` |
+| `触发事件` | `dehover_node.jstree` |
 
 
 
 
 ## dehover_node.jstree （ Event ⚡ ）
+当用户鼠标离开节点时触发。
 
+| 参数 | 描述 |
+| :----- | :------ |
+| `nodes` | `Object` |
 
 
 
 
 
 ## select_node (obj [, supress_event, prevent_open])
+选择一个节点。
+
+| 参数/触发 | 描述 |
+| :----- | :------ |
+| `obj` | `mixed` 需选中的节点数组 |
+| `supress_event` | `Boolean` 若为`true`，将不触发`changed.jstree`事件 |
+| `prevent_open` | `Boolean` 若为`true`，将不打开选中节点的父节点 |
+| `触发事件` | `select_node.jstree` `changed.jstree` |
 
 
 
@@ -1094,153 +1246,258 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 ## select_node.jstree （ Event ⚡ ）
+当节点被选中时触发。
 
+| 参数 | 描述 |
+| :----- | :------ |
+| `nodes` | `Object` |
+| `selected` | `Array` 已选中的节点 |
+| `event` | `Object` 触发本事件`select_node`的事件 |
 
 
 
 
 
 ## changed.jstree （ Event ⚡ ）
+当已选中的节点发生变化（`选择`发生变化）时触发。
 
+| 参数 | 描述 |
+| :----- | :------ |
+| `nodes` | `Object` |
+| `action` | `Object` 引起`选择`发生变化的`action` |
+| `selected` | `Array` 当前的已选中的节点 |
+| `event` | `Object` 触发本事件`changed_node`的事件 |
 
 
 
 
 
 ## deselect_node (obj [, supress_event])
+不选中节点。
 
+| 参数/触发 | 描述 |
+| :----- | :------ |
+| `obj` | `mixed` 若为一个数组，则是需被不选中的节点列表 |
+| `supress_event` | `Boolean` 若为`true`，将不触发`changed.jstree`事件 |
+| `触发事件` | `deselect_node.jstree` `changed.jstree` |
 
 
 
 
 
 ## deselect_node.jstree （ Event ⚡ ）
+当节点被从`选中`变为`不选中`状态时触发。
 
+| 参数 | 描述 |
+| :----- | :------ |
+| `nodes` | `Object` |
+| `selected` | `Array` 当前的已选中的节点 |
+| `event` | `Object` 触发本事件`deselect_node`的事件 |
 
 
 
 
 
 ## select_all ([supress_event])
+选中树的所有节点。
 
+| 参数/触发 | 描述 |
+| `supress_event` | `Boolean` 若为`true`，将不触发`changed.jstree`事件 |
+| `触发事件` | `deselect_node.jstree` `changed.jstree` |
 
 
 
 
 
 ## select_all.jstree （ Event ⚡ ）
+当树中所有节点都被选中时触发。
 
+| 参数 | 描述 |
+| :----- | :------ |
+| `selected` | `Array` 当前的已选中的节点 |
 
 
 
 
 
 ## deselect_all ([supress_event])
+不选中树中所有节点。
 
+| 参数/触发 | 描述 |
+| :----- | :------ |
+| `supress_event` | `Boolean` 若为`true`，将不触发`changed.jstree`事件 |
+| `触发事件` | `deselect_all.jstree` `changed.jstree` |
 
 
 
 
 
 ## deselect_all.jstree （ Event ⚡ ）
+当树中所有节点状态变为不选中时触发。
 
+| 参数 | 描述 |
+| :----- | :------ |
+| `nodes` | `Object` 之前的选中节点 |
+| `selected` | `Array` 当前的已选中的节点 |
 
 
 
 
 
 ## is_selected (obj)
+检查一个节点是否已被选中。
 
+| 参数/返回 | 描述 |
+| :----- | :------ |
+| `obj` | `mixed` |
+| `返回` | `Boolean` |
 
 
 
 
 
 ## get_selected ([full])
+获取所有已选中的节点。
 
+| 参数/返回 | 描述 |
+| :----- | :------ |
+| `full` | `mixed` 若为`true`则返回节点对象全部数据，否则只返回节点 ID 列表 |
+| `返回` | `Array` |
 
 
 
 
 
 ## get_top_selected ([full])
+获取顶层的被选中节点。
 
+| 参数/返回 | 描述 |
+| :----- | :------ |
+| `full` | `mixed` 若为`true`则返回节点对象全部数据，否则只返回节点 ID 列表 |
+| `返回` | `Array` |
 
 
 
 
 
 ## get_bottom_selected ([full])
+获取底层的被选中节点。
 
+| 参数/返回 | 描述 |
+| :----- | :------ |
+| `full` | `mixed` 若为`true`则返回节点对象全部数据，否则只返回节点 ID 列表 |
+| `返回` | `Array` |
 
 
 
 
 
 ## get_state () - -  `private`
+获取树目前的状态（之后可使用`set_state(state)`来恢复状态），仅内部使用。
 
+| 返回 | 描述 |
+| :----- | :------ |
+| `返回` | `Object` |
 
 
 
 
 
 ## set_state (state [, callback]) - -  `private`
+设置树的状态，仅内部使用。
 
+| 参数/触发 | 描述 |
+| :----- | :------ |
+| `state` | `Object` 要设置的状态。此对象是传引用，且 jstree 不会修改此对象 |
+| `callback` | `Function` 可选，设置状态完毕后的回调函数 |
+| `触发事件` | `set_state.jstree` |
 
 
 
 
 
 ## set_state.jstree （ Event ⚡ ）
-
+当`set_state`完毕时触发。
 
 
 
 
 
 ## refresh ()
+刷新树，所有的节点都将重新加载，并触发`load_node`。
 
+| 参数/触发 | 描述 |
+| :----- | :------ |
+| `skip_loading` | `Boolean` 是否跳过加载动画 |
+| `forget_state` | `Mixed` 若为`true`则将不可恢复原来的状态，若为一个函数（此函数将接收一个状态参数）则此函数的结果将作为状态 |
+| `触发事件` | `refresh.jstree` |
 
 
 
 
 
 ## refresh.jstree （ Event ⚡ ）
-
+当`refresh`完毕时触发。
 
 
 
 
 
 ## refresh_node (obj)
+刷新一个节点（并重新加载其子节点，并触发`load_node`）。
 
+| 参数/触发 | 描述 |
+| :----- | :------ |
+| `obj` | `Mixed` 节点 |
+| `触发事件` | `refresh_node.jstree` |
 
 
 
 
 
 ## refresh_node.jstree （ Event ⚡ ）
+当节点刷新完毕时触发。
 
-
+| 参数 | 描述 |
+| :----- | :------ |
+| `node` | `Object` 已刷新的节点 |
+| `nodes` | `Array` 已重新加载的节点 ID 列表 |
 
 
 
 
 ## set_id (obj, id)
+设置节点 ID。
 
+| 参数/返回/触发 | 描述 |
+| :----- | :------ |
+| `obj` | `mixed` 节点 |
+| `id` | `String` 新 ID |
+| `返回` | `Boolean` |
+| `触发事件` | `set_id.jstree` |
 
 
 
 
 
 ## set_id.jstree （ Event ⚡ ）
+当节点的 ID 变化完毕时触发。
 
-
+| 参数 | 描述 |
+| :----- | :------ |
+| `node` | `Object` |
+| `old` | `String` 旧 ID |
 
 
 
 
 ## get_text (obj)
+获取节点名（text）
+
+| 参数/返回 | 描述 |
+| :----- | :------ |
+| `obj` | `mixed` 节点 |
+| `返回` | `String` |
 
 
 
@@ -1248,6 +1505,14 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 ## set_text (obj, val) - -  `private`
+设置节点的名称。仅内部使用。请使用`rename_node(obj, val)`
+
+| 参数/返回/触发 | 描述 |
+| :----- | :------ |
+| `obj` | `mixed` 单个节点，或，多个节点组成的数组 |
+| `val` | `String` 新名称 |
+| `返回` | `Boolean` |
+| `触发事件` | `set_text.jstree` |
 
 
 
@@ -1255,7 +1520,12 @@ boolean（默认`true`），双击节点名时是否选择（toggled）节点。
 
 
 ## set_text.jstree （ Event ⚡ ）
+当节点的名称变化完毕时触发。
 
+| 参数 | 描述 |
+| :----- | :------ |
+| `obj` | `Object` |
+| `text` | `String` 新名称 |
 
 
 
