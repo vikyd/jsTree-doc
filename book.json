@@ -1,7 +1,8 @@
 {
   "plugins": [
     "anchor-navigation-ex",
-    "theme-api"
+    "theme-api",
+    "github"
   ],
   "pluginsConfig": {
     "anchor-navigation-ex": {
@@ -19,6 +20,9 @@
           "name": "Go"
         }
       ]
+    },
+    "github": {
+      "url": "https://github.com/Viky-zhang/jsTree-doc"
     }
   }
 }

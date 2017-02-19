@@ -3,3 +3,19 @@
     list-style-type: none;
     font-size: 16px;
 }
+
+.book-body {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(245, 245, 220, 0.64);
+}
+
+.body-inner {
+    position: static !important;
+    width: 75%;
+    background-color: white;
+}
+
+nav > ul > .chapter > a {
+    font-weight: bold;
+}
