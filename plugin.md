@@ -1,9 +1,10 @@
-# Plugins?
+# 插件？
+jsTree 将一些功能从核心移出，成为插件，你需要时才启用此插件。
+`plugins`配置项是一个数组，数组项是插件名，用于启用插件。
 
-jsTree has some functionality moved out of the core so you can only use it when you need it. To enable a plugin use the plugins config option and add that plugin's name to the array.
+插件的选项配置见`插件 API`页面。
 
-For example enabling all the plugins can be done this way: (enable only plugins you need)
-
+例如，下面示例表示启用了所有官方插件（你可按需启用）：
 ```js
 "plugins" : [
 	"checkbox",
@@ -21,14 +22,15 @@ For example enabling all the plugins can be done this way: (enable only plugins 
 ]
 ```
 
-Here is a quick overview for each one.
+下面将逐一介绍每个插件。
 
 
 
 
-
-# Changed plugin
-This plugin adds additional information about selection changes. Once included in the plugins config option, each changed.jstree event data will contain a new property named changed, which will give information about selected and deselected nodes since the last changed.jstree event
+# 变化插件（Changed plugin）
+此插件作用是为选择变化时提供更多附加信息。
+一旦在`plugins`配置项中启用本插件，`changed.jstree`事件数据中将多一个`changed`属性，
+这个属性包含一些数据，如最近一次`changed.tree`事件中的`selected`、`deselected`的节点。
 
 ```js
 $(function () {
@@ -43,19 +45,24 @@ $(function () {
 });
 ```
 
+示例：https://www.jstree.com/plugins/
 
 
 
-# Checkbox plugin
-This plugin renders checkbox icons in front of each node, making multiple selection much easier.
- 
-It also supports tri-state behavior, meaning that if a node has a few of its children checked it will be rendered as undetermined, and state will be propagated up. You can also fine tune the cascading options with the cascade config option.
 
-Keep in mind when cascading checkbox will check even disabled nodes.
+# 勾选框插件（Checkbox plugin）
+此插件在每个节点前添加一个勾选框，使得多选节点更方便。
 
-Undetermined state is automatically calculated, but if you are using AJAX and loading on demand and want to render a node as underemined pass "undetermined" : true in its state.
+此插件支持三种状态：全部子节点选中、全部未选中、部分选中`undetermined`。部分选中状态会向上转播状态
 
-You can find all the checkbox plugin config options in the API.
+你还可通过设置传播方式的选项进行微调。
+
+需注意的是，即使一个节点处于禁用状态，勾选框也会受传播的影响。
+
+半选中状态`undetermined`是插件自动计算出来的，但当你使用 AJAX 来按需加载节点，
+且想将这些未加载节点的状态设置为半选中状态，那你可传入这个参数：`"undetermined" : true`。
+
+插件的选项配置见`插件 API`页面。
 
 ```js
 $(function () {
@@ -68,11 +75,13 @@ $(function () {
 });
 ```
 
+示例：https://www.jstree.com/plugins/
 
 
 
-# Conditionalselect plugin
-This plugin overrides the activate_node function (the one that gets called when a user tries to select a node) and enables preventing the function invokation by using a callback.
+
+# 条件选择插件（Conditionalselect plugin）
+此插件覆盖了`activate_node`函数，并允许设置成不被回调函数调用。
 
 ```js
 $(function () {
@@ -85,13 +94,17 @@ $(function () {
 });
 ```
 
+示例：https://www.jstree.com/plugins/
 
 
 
-# Contextmenu plugin
-This plugin makes it possible to right click nodes and shows a list of configurable actions in a menu.
 
-You can find all the contextmenu plugin config options in the API.
+# 右键菜单插件（Contextmenu plugin）
+此插件用于在树中点击右键时弹出一个菜单。
+此菜单可通过具体的配置进行自定义。
+
+插件的选项配置见`插件 API`页面。
+
 
 ```js
 $(function () {
@@ -105,13 +118,15 @@ $(function () {
 });
 ```
 
+示例：https://www.jstree.com/plugins/
+
 
 
 
 # Drag & drop plugin(dnd)
-This plugin makes it possible to drag and drop tree nodes and rearrange the tree.
+此插件允许拖动和释放节点来调整树结构。
 
-You can find all the dnd plugin config options in the API.
+插件的选项配置见`插件 API`页面。
 
 ```js
 $(function () {
@@ -124,13 +139,15 @@ $(function () {
 });
 ```
 
+示例：https://www.jstree.com/plugins/
 
 
 
-# Massload plugin
-This plugin makes it possible to load nodes in a single request (used with lazy loading).
 
-You can find all the massload plugin config options in the API.
+# 惯性加载插件（Massload plugin）
+此插件允许一次请求获得多个节点的数据（与懒加载一起使用）。
+
+插件的选项配置见`插件 API`页面。
 
 ```js
 $(function () {
@@ -149,13 +166,15 @@ $(function () {
 });
 ```
 
+示例：https://www.jstree.com/plugins/
 
 
 
-# Search plugin
-This plugin adds the possibility to search for items in the tree and even to show only matching nodes.
 
-You can find all the search plugin config options in the API.
+# 搜索插件（Search plugin）
+此插件允许对树的节点进行搜索，并允许只显示搜索到的节点。
+
+插件的选项配置见`插件 API`页面。
 
 ```js
 $(function () {
@@ -173,10 +192,15 @@ $(function () {
 });
 ```
 
+示例：https://www.jstree.com/plugins/
 
 
-# Sort plugin
-This plugin automatically arranges all sibling nodes according to a comparison config option function, which defaults to alphabetical order.
+
+
+# 排序插件（Sort plugin）
+此插件自动对兄弟节点进行排序，默认是按字母升序排序。
+
+插件的选项配置见`插件 API`页面。
 
 ```js
 $(function () {
@@ -186,13 +210,15 @@ $(function () {
 });
 ```
 
+示例：https://www.jstree.com/plugins/
 
 
 
-# State plugin
-This plugin saves all opened and selected nodes in the user's browser, so when returning to the same tree the previous state will be restored.
 
-You can find all the state plugin config options in the API. Make a selection and refresh this page to see the change persisted.
+# 状态插件（State plugin）
+此插件允许保存节点的打开、选中状态到用户浏览器中，这样下次重新打开页面时可恢复到上次关闭页面时的状态。
+
+插件的选项配置见`插件 API`页面。
 
 ```js
 $(function () {
@@ -203,15 +229,18 @@ $(function () {
 });
 ```
 
+这个示例中，你可调整里面的节点，然后刷新页面看看节点的状态是否还有保留。
+示例：https://www.jstree.com/plugins/
 
 
 
-# Types plugin
-This plugin makes it possible to add predefined types for groups of nodes, which means to easily control nesting rules and icon for each group.
 
-To set a node's type you can use set_type or supply a type property with the node's data.
+# 类型插件（Types plugin）
+此插件用于为节点设置类型，即按类型形成不同的节点组，使得更容易对嵌套规则、图标等进行操作。
 
-You can find all the types plugin config options & functions in the API.
+可用`set_type`或直接设置节点的`type`属性值来设置节点的类型。
+
+插件的选项配置见`插件 API`页面。
 
 ```js
 $(function () {
@@ -229,10 +258,14 @@ $(function () {
 });
 ```
 
+示例：https://www.jstree.com/plugins/
 
 
-# Unique plugin
-Enforces that no nodes with the same name can coexist as siblings. This plugin has no options, it just prevents renaming and moving nodes to a parent, which already contains a node with the same name.
+
+
+# 唯一性插件（Unique plugin）
+此插件强制限制兄弟节点间不能重名。
+此插件没有配置项，其作用在于重命名、拖动节点时防止重名。
 
 ```js
 $(function () {
@@ -245,10 +278,14 @@ $(function () {
 });
 ```
 
+示例：https://www.jstree.com/plugins/
 
 
-# Wholerow plugin
-Makes each node appear block level which makes selection easier. May cause slow down for large trees in old browsers.
+
+
+# 整行插件（Wholerow plugin）
+使每个节点显示为一整行，而不是仅仅节点的图标和节点名。
+这会使得容易选中节点，但同时也可能会导致旧浏览器中拥有较多节点树较慢。
 
 ```js
 $(function () {
@@ -257,3 +294,10 @@ $(function () {
   });
 });
 ```
+
+示例：https://www.jstree.com/plugins/
+
+
+
+
+------
