@@ -20,3 +20,17 @@
 nav > ul > .chapter > a {
     font-weight: bold;
 }
+
+.markdown-section h1 {
+    font-size: 1.8em;
+    font-weight: normal;
+    color: #12b811;
+}
+
+.markdown-section h2 {
+    font-size: 1.3em;
+    color: #12b811;
+    margin-top: 50px;
+    margin-bottom: .4em;
+    font-weight: normal;
+}
