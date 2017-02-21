@@ -9,8 +9,15 @@ https://viky-zhang.gitbooks.io/jstree-doc/
 
 
 
+# 完善
+水平有限，难免错漏。
+
+问题意见，欢迎提 PR：https://github.com/Viky-zhang/jsTree-doc
+
+
+
+
 # 更新
 不定时更新。
  
-发现问题、改善意见，欢迎提 pr 过来：https://github.com/Viky-zhang/jsTree-doc
-
+ 

@@ -1,12 +1,12 @@
-# Listening for events
+# 监听事件
+jsTree 会在容器上触发各种事件，详细事件列表见`API 页面`。
 
-jsTree triggers various events on the container. You can review the list of all events to know what to listen for.
+想获取更多关于事件的信息，可打断点，查看其中的`data`参数。
 
-To get more information about the event inspect its data argument.
+大部分情况下，当调用节点时，都可获得整个节点对象。
+还可通过节点 ID 和`get_node()`来获取节点数据。
 
-In most cases where a node is involved you will get the whole node object passed in. If you get an ID string somewhere and want to inspect the node just use .get_node().
-
-
+```js
 $('#jstree')
   // listen for event
   .on('changed.jstree', function (e, data) {
@@ -18,3 +18,8 @@ $('#jstree')
   })
   // create the instance
   .jstree();
+```
+
+
+
+

@@ -1,29 +1,29 @@
-# Populating a tree using HTML
+# 用 HTML 来填充树
+## 基本使用
+jsTree 可自动转换一个标准的无序列表为一棵树。
+最低要求是包含 1 个`ul`并内嵌几个包含名称的`li`。
 
-Basic markup
-
-jsTree can turn a regular unordered list into a tree. The minimal required markup is a <ul> node with some nested <li> nodes with some text inside.
-
-You should have a container wrapping the <ul> and create the instance on that container. Like so:
-$('#html1').jstree();.
-
+```html
 <div id="html1">
   <ul>
     <li>Root node 1</li>
     <li>Root node 2</li>
   </ul>
 </div>
-Root node 1
-Root node 2
-Nodes with children
+```
 
-To create a node with child nodes simpy nest an <ul>.
+你应以一个容器包围`ul`，并在此容器上创建实例，如：
+```js
+$('#html1').jstree();
+```
 
-Internally jstree converts the text to a link, so if there already is a link in the markup jstree won't mind. Like Child node 2.
-Clicking on the link however will not direct the user to a new page, to do that - intercept the changed.jstree event and act accordingly.
 
-Keep reading for the section on handling events.
 
+
+## 子节点
+若需创建子节点，只需继续内嵌`ul`。
+
+```html
 <div id="html1">
   <ul>
     <li>Root node 1
@@ -34,17 +34,28 @@ Keep reading for the section on handling events.
     </li>
   </ul>
 </div>
-Root node 1
-Setting initial state with classes
+```
 
-To make a node initially selected you can set the jstree-clicked class on the <a> element.
+在 jstree 内部，默认会将文本转换成一个链接`<a>`。
+若本身已存在一个`<a>`（如上述的`Child node 2`），并不受影响，
+因为 jstree 设置为不自动跳转到对应的链接，而是触发一个名为`changed.jstree`的事件，
+你可监听此事件来做想做的事。
 
-Similarly you can set the jstree-open class on any <li> element to make it initially extended, so that its children are visible.
+关于事件，请见`API 页面`。
 
-It is a good idea to give your nodes unique IDs by adding the id attribute to any <li> element. This will be useful if you need to sync with a backend as you will get the ID back in any events jstree triggers.
 
+
+
+## 用 CSS class 设置初始状态
+若想一个节点默认被选中，只需为`<a>`添加一个`jstree-clicked`类即可。
+
+类似的，还可在`li`中添加`jstree-open`类，使得节点展开，可见其子节点。
+
+建议为每个`<li>`设置唯一的`id`属性，在 jstree 的某些事件中，通过这些 id，可以很方便进行相关的操作。
+
+```html
 …
-<li class="jstree-open" id="node_1">Root
+<li class="jstree-open" id="node_1">
   <ul>
     <li>
       <a href="#" class="jstree-clicked">Child</a>
@@ -52,18 +63,18 @@ It is a good idea to give your nodes unique IDs by adding the id attribute to an
   </ul>
 </li>
 …
-Root
-Child
-Setting initial state with data attribute
+```
 
-You can also set the state on a node using a data-jstree attribute.
 
-You can use any combination of the following: opened, selected, disabled, icon.
 
-Specifying an address (anything containing a /) will display that image as the node icon. Using a string will apply that class to the <i> element that is used to represent the icon.
-For example if you are using Twitter Bootstrap you can use "icon" : "glyphicon glyphicon-leaf" to display a leaf icon.
 
-<li data-jstree='{"opened":true,"selected":true}'>Root
+## 用`data`属性设置初始状态
+可通过`data-jstree`属性来设置一个节点的状态。
+
+属性中支持的组合包括：`opened` `selected` `disabled` `icon`。
+
+```html
+<li data-jstree='{"opened":true,"selected":true}'>
   <ul>
     <li data-jstree='{"disabled":true}'>Child</li>
     <li data-jstree='{"icon":"//jstree.com/tree.png"}'>
@@ -72,22 +83,35 @@ For example if you are using Twitter Bootstrap you can use "icon" : "glyphicon g
       Child</li>
   </ul>
 </li>
-Root
-Child
- Child
- Child
-Loading with AJAX
+```
 
-You can also use AJAX to populate the tree with HTML your server returns. The format remains the same as the above, the only difference is that the HTML is not inside the container, but returned from the server.
+指定一个图片文件地址（任何包含`/`的字符串），可以在节点上显示图标。
+也可通过填入 CSS class 名来设置图标。
+例如，下面将设置一个 Twitter Bootstrap 的叶子图标：
+```json
+"icon" : "glyphicon glyphicon-leaf"
+```
 
-To take advantage of this option you need to use the $.jstree.defaults.core.data config option.
 
-Just use a standard jQuery-like AJAX config and jstree will automatically make an AJAX request populate the tree with the response.
 
-Add a class of jstree-closed to any LI node you return and do not nest an UL node and jstree will make another AJAX call as soon as the user opens this node.
 
-In addition to the standard jQuery ajax options here you can supply functions for data and url, the functions will be run in the current instance's scope and a param will be passed indicating which node is being loaded, the return value of those functions will be used as URL and data respectively.
+## 通过 AJAX 加载数据
+可通过 AJAX 的响应的 HTML 数据来填充树。
+响应的 HTML 格式与前面所述的一致，不同的仅是数据来源于后台服务器而已。
 
+可通过配置` $.jstree.defaults.core.data`来更好使用此功能。
+
+只需使用类似 jQuery AJAX 的配置，jstree 即可自动发送 AJAX 请求来获取填充树的数据。
+
+请在响应数据的每个`LI`中添加`jstree-closed`类，且不要在其中再嵌套`UL`，
+因为 jstree 会自动发起另外的 AJAX 请求来请求嵌套的节点数据。
+
+除了标准的 jQuery AJAX 配置项，jstree 还提供了`data`和`url`。
+这两个选项的值可以是一个函数，函数将在实例范围内执行，并接收 1 个参数（正在加载的节点），
+函数的返回值作为这两个配置项各自最终的值。
+
+
+```html
 $('#tree').jstree({
   'core' : {
     'data' : {
@@ -104,3 +128,9 @@ $('#tree').jstree({
 <li>Node 1</li>
 <li class="jstree-closed">Node 2</li>
 </ul>
+```
+
+
+
+
+------
