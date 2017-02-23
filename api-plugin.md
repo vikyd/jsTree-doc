@@ -56,7 +56,7 @@ boolean，默认`true`，设置点击节点任意位置时是否都对勾选框�
 
 
 ## $.jstree.defaults.checkbox.keep_selected_style（checkbox插件）
-boolean，默认`true`，设置是否保持节点的选中状态。
+boolean，默认`true`，设置是否保留节点的选中状态样式（译注：若为`false`则勾选后，节点的背景色不会发生改变，仅勾选框打了一个勾）。
 
 
 

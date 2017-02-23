@@ -17,6 +17,10 @@
     /*overflow-y: initial !important;*/
 /*}*/
 
+.page-inner{
+    max-width: 800px;
+}
+
 nav > ul > .chapter > a {
     font-weight: bold;
 }
