@@ -5,9 +5,6 @@
     "github"
   ],
   "pluginsConfig": {
-    "anchor-navigation-ex": {
-      "isRewritePageTitle": true
-    },
     "theme-api": {
       "languages": [
         {
