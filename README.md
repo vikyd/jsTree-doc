@@ -2,7 +2,7 @@
 ![jstree-logo](https://static.jstree.com/3.3.3/assets/images/logo.png)
 
 # 简介
-https://vikyd.gitbooks.io/jstree-doc/
+https://vikyd.gitbooks.io/jstree/
 
 [jsTree](https://www.jstree.com/) 控件的中文文档（非官方）。
 
